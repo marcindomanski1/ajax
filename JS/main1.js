@@ -1,21 +1,25 @@
-var myPromise = new Promise(function (resolve, reject) {
+const text = (text) => {
+    document.getElementById('info').innerHTML = text;
 
-    console.log('Hello');
-    setTimeout(function () {
+};
+
+const myPromise = new Promise((resolve, reject) => {
+    text('Hello');
+    setTimeout(() => {
         if (1 === 1) {
             resolve();
         } else {
             reject();
         }
     }, 2000);
-    console.log('Hi');
+    text('Hi');
 });
 
 
-myPromise.then(function () {
-    console.log('Hello then');
+myPromise.then(() => {
+    text('Hello then');
 });
 
-myPromise.catch(function () {
-    console.log('Hello catch');
+myPromise.catch(() => {
+    text('Hello catch');
 });
