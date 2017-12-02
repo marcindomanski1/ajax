@@ -7,17 +7,43 @@ var myCounter = function (x) {
 };
 
 function add(y) {
-    var a = myCounter(20).then(function (r) {
-        var b = myCounter(30).then(function (s) {
+    return myCounter(20).then(function (r) {
+        return myCounter(30).then(function (s) {
             console.log('r + s =', r + s);
-            return r + s;
+            return y + r + s;
         });
     });
-
-    return y + a;
 }
 
-console.log(add(50));
+function add2(z) {
+    return myCounter(20)
+        .then(function (r) {
+            return myCounter(30 + r)
+        })
+        .then(function (s) {
+            return z + s;
+        });
+
+}
+
+async function add3(z) {
+    var a = await myCounter(20);
+    var b = await myCounter(30);
+    return a + b + z;
+}
+
+add(550).then(function (result) {
+    console.log('Wynik1 result:' + result);
+});
+
+add2(50).then(function (result) {
+    console.log('Wynik2 result:' + result);
+});
+
+
+add3(10).then(function (result) {
+    console.log('Wynik3 result:' + result);
+});
 
 
 // myCounter(20).then(function (y) {
